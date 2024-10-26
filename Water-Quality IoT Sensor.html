@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>GrowMainStreet</title>
+		<link rel="icon" type="image/x-icon" href="https://www.mavin.cloud/shared/img/gms-favicon.ico">
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins&family=Roboto">
+		<style>
+			html {
+				font-family: Roboto;
+				font-style: normal;
+			}
+			
+			body {
+				margin: 0px;
+				min-width: 572px;
+				min-height: 1000px;
+			}
+			
+			.yellow-bg {
+				position: absolute;
+				top: 93px;
+				left: 0px;
+				min-width: 572px;
+				width: 100%;
+				height: 251px;
+				background-color: #FFC700;				
+			}
+			
+			.container {
+				width: 508px;
+				margin: 0px auto 0px auto;
+			}
+			
+			.header {
+				position: relative;
+				height: 93px;
+			}
+			
+			.user-image {
+				position: absolute;
+				top: 29px;
+				left: 35px;
+				height: 40px;
+				width: 40px;
+				border-radius: 20px;
+				border: 1px solid transparent;
+			}
+			
+			.menu {
+				position: absolute;
+				top: 29px;
+				right: 24px;				
+				height: 40px;
+				width: 40px;
+				cursor: pointer;
+			}
+			
+			#menu-items {
+				position: absolute;
+				top: 69px;
+				right: 24px;
+				width: 117px;
+				height: 20px;
+				font-weight: 400;
+				font-size: 14px;
+				line-height: 20px;
+				letter-spacing: 0.25px;
+				background-color: #ffffff;
+				padding: 10px;
+				box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+				border-radius: 5px;
+				border: 1px solid transparent;
+				cursor: pointer;
+			}
+			
+			.hidden {
+				display: none;
+			}
+			
+			.menu img {
+				width: 18px;
+				hight: 12px;
+				margin: 14px 11px 14px 11px;
+			}
+			
+			.info {
+				padding: 27px 20px 20px 20px; 				
+			}
+			
+			.info .title {
+				position: relative;
+				width: 468px;
+				height: 100px;
+			}
+			
+			.name {
+				font-family: 'Poppins';
+				font-weight: 600;
+				font-size: 20px;
+				line-height: 19.6px;
+				color: #27104E;
+			}
+			
+			.device {
+				font-family: 'Poppins';
+				font-weight: 600;
+				font-size: 36px;
+				line-height: 35.28px;
+				color: #27104E;
+			}
+			
+			.device-img {
+				position: absolute;
+				top: 0px;
+				right: 0px;
+				width: 39px;
+				height: 56px;
+				background-image: url('https://www.mavin.cloud/shared/img/GMS-water-sensor.png');
+				background-position: center;
+				background-size: contain;
+			}
+			
+			.sound { 
+				position: absolute;
+				top: 73px;
+				font-weight: 400;
+				font-size: 16px;
+				line-height: 24px;
+				letter-spacing: 0.5px;
+				color: #1C1B1F;
+			}
+			
+			.switch {
+				position: absolute;
+				top: 68px;
+				left: 66px;
+				width: 52px; 
+				height: 32px; 
+				border-radius: 16px; 
+				background-color: white;
+			}
+			
+			.switch .dot {
+				position: absolute; 
+				top: 4px; 
+				left: 4px; 
+				width: 24px; 
+				height: 24px; 
+				border-radius: 12px; 
+				background-color: #FFC700; 
+				background-image: url('https://www.mavin.cloud/shared/img/GMS-x.png'); 
+				background-position: center; 
+				background-repeat: no-repeat; 
+				background-size: 9px 9px; 
+				transition: 0.3s;
+			}
+			
+			.switch .dot.enabled {
+				left: 24px; 
+				background-image: url('https://www.mavin.cloud/shared/img/GMS-check.png'); 
+				background-size: 12px 9px;
+			}
+			
+			.inputs {
+				display: flex;	
+				flex-direction: row;
+				gap: 22px;
+				margin-top: 22px;
+				margin-bottom: 25px;
+				height: 57px;
+			}
+			
+			.inputs .text {
+				position: relative;
+				width: 355px;
+				height: 56px;
+				background-color: #ffffff;
+				border-bottom: 1px solid #1C1B1F;
+				border-radius: 4px 4px 0px 0px;
+			}
+			
+			.text .label {
+				position: absolute;
+				top: 8px;
+				left: 10px;
+				width: 90px;
+				height: 16px;
+				font-weight: 400;
+				font-size: 12px;
+				line-height: 16px;
+				letter-spacing: 0.4px;
+				color: #1C1B1F;
+			}
+			
+			.text input {
+				position: absolute;
+				left: 10px;
+				bottom: 0px;
+				border: 0px;
+				width: 305px;
+				height: 24px;
+				font-weight: 400;
+				font-size: 16px;
+				line-height: 24px;
+				letter-spacing: 0.5px;
+				color: #1C1B1F;
+			}
+			
+			.text input:focus {
+				outline-style: none;
+				box-shadow: none;
+				border: 0px;
+			}
+			
+			.text input:autofill {
+				background-color: transparent;
+			}
+			
+			.text input:disabled {
+				background-color: transparent;
+			}
+			
+			.text .clear {
+				position: absolute;
+				top: 18px;
+				right: 12px;
+				width: 20px;
+				height: 20px;
+				background-image: url('https://www.mavin.cloud/shared/img/GMS-clear-entry.png');
+				background-position: center;
+				background-size: contain;
+				cursor: pointer;
+			}
+			
+			.inputs .button {
+				position: relative;
+				width: 91px;
+				height: 20px;
+				margin-top: 8px;
+				margin-bottom: 9px;
+				padding-top: 10px;
+				padding-bottom: 10px;
+				background: #FFFFFF;				
+				border-radius: 20px;
+				font-weight: 500;
+				font-size: 14px;
+				line-height: 20px;
+				letter-spacing: 0.1px;
+				color: #000000;
+				text-align: center;
+				cursor: pointer;
+			}
+			
+			.inputs .button:hover {				
+				box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+			}
+			
+			.disabled {
+				cursor: context-menu !important;
+				box-shadow: none !important;
+			}
+			
+			.button.disabled {
+				background-color: rgba(103, 80, 164, 0.2);
+			}
+			
+			.list {
+				padding: 20px 20px 20px 20px; 	
+				display: flex;	
+				flex-direction: column;
+				row-gap: 10px;
+			}
+			
+			.list .item {
+				background: #FFF2C2;
+				padding: 14px 16px 14px 16px;
+			}
+			
+			.item .title {
+				font-weight: 400;
+				font-size: 16px;
+				line-height: 24px;
+				letter-spacing: 0.5px;
+				color: #1C1B1F;
+			}
+			
+			.item .details {
+				font-weight: 400;
+				font-size: 14px;
+				line-height: 20px;
+				letter-spacing: 0.25px;
+				color: #49454F;
+			}
+			
+			.footer {
+				text-align: center;
+			}
+			
+			.footer img {
+				width: 157px;
+				height: 67px;
+			}
+			
+			.disclaimer {
+				font-weight: 400;
+				font-size: 10px;
+				line-height: 20px;
+				letter-spacing: 0.25px;
+				color: #ff0000;
+				margin: 20px 20px 20px 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="yellow-bg"></div>
+		<div class="container">
+			<div class="header">
+				<img class="user-image" src="https://www.mavin.cloud/shared/img/GMS-generic-user.png" />
+				<div class="menu" onclick="toggleMenu();">
+					<img src="https://www.mavin.cloud/shared/img/GMS-menu.png" />
+				</div>
+				<div id="menu-items" class="hidden">
+					<div onclick="logout();">
+						LOGOUT
+					</div>
+				</div>
+			</div>
+			<div class="content">
+				<div class="info">
+					<div class="title">
+						<div class="name">
+							Roshni's
+						</div>
+						<div class="device">
+							water sensor
+						</div>
+						<div class="device-img"></div>
+						<div class="sound">
+							Sound?
+						</div>
+						<div class="switch" onclick="toggleSound();">
+							<div id="sound-dot" class="dot"></div>
+						</div>
+					</div>
+					<div class="inputs">
+						<div class="text">
+							<div class="label">
+								Enter location
+							</div>
+							<input type="text" id="location" />
+							<div class="clear" id="clear" onclick="clearLocation();"></div>
+						</div>
+						<div class="button" id="start" onclick="checkWater();">
+							START 
+						</div>
+					</div>
+				</div>
+				<div class="list" id="list">
+				</div>
+			</div>
+			<div class="footer">
+				<img src="https://www.mavin.cloud/shared/img/GMS-black-googlecloud.png" />
+				<div class="disclaimer">
+					THIS IS NOT AN FDA APPROVED SENSOR.
+				</div>
+			</div>
+		</div>
+	</body>
+	<script>
+		var readings = [];
+		var numToTake = 10;
+		var timeout;
+		var soundEnabled = false;
+		var playSound = new Audio();
+	
+		function toggleMenu() {
+			document.getElementById('menu-items').classList.toggle('hidden');
+		}
+		
+		function toggleSound() {
+			if (!soundEnabled) {
+				playSound.src = 'https://www.mavin.cloud/shared/audio/silent.mp3';
+				playSound.play();
+				soundEnabled = true;
+				document.getElementById('sound-dot').classList.add('enabled');
+			}
+			else {
+				soundEnabled = false;
+				document.getElementById('sound-dot').classList.remove('enabled');
+			}
+		}
+		
+		function clearLocation() {
+			document.getElementById('location').value = '';
+		}
+		
+		function checkWater() {
+			if (document.getElementById('location').value !== '') {
+				document.getElementById('location').disabled = true;	
+				document.getElementById('clear').classList.add('hidden');
+				var start = document.getElementById('start');
+				start.setAttribute('onclick', '');
+				start.classList.add('disabled');
+				getReading();
+			}
+		}
+		
+		function getReading() {
+			clearTimeout(timeout);
+			var info = {
+				pin: 33
+			};
+			fetch('/api/tds', {
+				method: 'POST',
+				body: JSON.stringify(info)
+			})
+			.then((response) => response.json())
+			.then((result) => {
+				readings.push(result.tds);
+				if (readings.length === numToTake) {
+					var total = readings.reduce(function(a, b) { return a + b; }, 0);
+					var avg = total / numToTake;
+					console.log(readings);
+					readings = [];
+					
+					var location = document.getElementById('location');
+					var dateTime = (new Date()).toLocaleString();
+					
+					var item = document.createElement('div');
+					item.classList.add('item');
+					var title = document.createElement('div');
+					title.classList.add('title');
+					title.innerText = avg.toFixed(3);
+					item.appendChild(title);
+					var details = document.createElement('div');						
+					details.classList.add('details');
+					details.innerText = location.value + ' ' + dateTime;
+					item.appendChild(details);
+					document.getElementById('list').appendChild(item);
+					
+					location.disabled = false;	
+					document.getElementById('clear').classList.remove('hidden');
+					var start = document.getElementById('start');
+					start.setAttribute('onclick', 'checkWater();');
+					start.classList.remove('disabled');
+					
+					if (soundEnabled) {
+						playSound.src = 'https://www.mavin.cloud/shared/audio/subtle.mp3';
+						playSound.play();
+					}
+				}
+				else {			  
+					timeout = setTimeout(getReading, 1000);
+				}
+			})
+			.catch((error) => {
+				console.error('Error:', error);
+				timeout = setTimeout(getReading, 1000);
+			});
+		}
+		
+		function logout() {
+			clearTimeout(timeout);
+			var info = {
+				pin: 33
+			};
+			fetch('/api/auto-tds', {
+				method: 'POST',
+				body: JSON.stringify(info)
+			})
+			.then((response) => response.json())
+			.then((result) => {
+				var host = window.location.protocol + "//" + window.location.host;
+				window.location.href = host;
+			})
+			.catch((error) => {
+				console.error('Error:', error);
+			});
+		}
+	</script>
+</html>
